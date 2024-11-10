@@ -31,7 +31,6 @@ class ResumeBuilder {
     private resumeContent: HTMLElement;
 
     constructor() {
-        // Initialize resumeData with default empty values
         this.resumeData = {
             name: '',
             email: '',
@@ -127,12 +126,6 @@ class ResumeBuilder {
     }
 
     private generateResume(): void {
-        const formattedDate = new Date().toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        });
-
         this.resumeContent.innerHTML = `
             <div class="resume-container">
                 <div class="resume-header">
@@ -183,80 +176,6 @@ class ResumeBuilder {
                 </div>
             </div>
         `;
-
-        // Add print styles dynamically
-        const styleSheet = document.createElement("style");
-        styleSheet.textContent = `
-            @media print {
-                .resume-container {
-                    max-width: 100%;
-                    margin: 0;
-                    padding: 20px;
-                    background: white;
-                    color: black;
-                }
-
-                .resume-name {
-                    font-size: 24px;
-                    margin-bottom: 8px;
-                }
-
-                .resume-contact {
-                    font-size: 14px;
-                    margin-bottom: 20px;
-                }
-
-                .resume-section {
-                    margin-bottom: 20px;
-                }
-
-                .resume-section h2 {
-                    font-size: 18px;
-                    border-bottom: 1px solid #000;
-                    padding-bottom: 5px;
-                    margin-bottom: 10px;
-                }
-
-                .education-item, .experience-item {
-                    margin-bottom: 15px;
-                }
-
-                .education-header, .experience-header {
-                    display: flex;
-                    justify-content: space-between;
-                    font-weight: bold;
-                }
-
-                .school, .company {
-                    font-weight: bold;
-                }
-
-                .degree, .position {
-                    font-style: italic;
-                    margin: 3px 0;
-                }
-
-                .description {
-                    margin-top: 5px;
-                }
-
-                .skills-list {
-                    display: flex;
-                    flex-wrap: wrap;
-                    gap: 10px;
-                    list-style-type: none;
-                    padding: 0;
-                }
-
-                .skills-list li {
-                    background: #f0f0f0;
-                    padding: 3px 8px;
-                    border-radius: 3px;
-                    font-size: 14px;
-                }
-            }
-        `;
-        document.head.appendChild(styleSheet);
     }
 
     private addEducationField(): void {
@@ -267,11 +186,11 @@ class ResumeBuilder {
         newEntry.dataset.id = id;
         newEntry.innerHTML = `
             <div class="entry-content">
-                <input type="text" name="school" placeholder="School Name" required>
-                <input type="text" name="degree" placeholder="Degree" required>
-                <input type="text" name="graduationYear" placeholder="Graduation Year" required>
+                <input type="text" name="school" placeholder="School Name" required class="form-input">
+                <input type="text" name="degree" placeholder="Degree" required class="form-input">
+                <input type="text" name="graduationYear" placeholder="Graduation Year" required class="form-input">
                 <div class="entry-actions">
-                    <button type="button" class="delete-entry" onclick="this.closest('.education-entry').remove()">
+                    <button type="button" class="btn btn-delete" onclick="this.closest('.education-entry').remove()">
                         Delete Entry
                     </button>
                 </div>
@@ -288,13 +207,13 @@ class ResumeBuilder {
         newEntry.dataset.id = id;
         newEntry.innerHTML = `
             <div class="entry-content">
-                <input type="text" name="company" placeholder="Company Name" required>
-                <input type="text" name="position" placeholder="Position" required>
-                <input type="text" name="startDate" placeholder="Start Date" required>
-                <input type="text" name="endDate" placeholder="End Date" required>
-                <textarea name="description" placeholder="Job Description" required></textarea>
+                <input type="text" name="company" placeholder="Company Name" required class="form-input">
+                <input type="text" name="position" placeholder="Position" required class="form-input">
+                <input type="text" name="startDate" placeholder="Start Date" required class="form-input">
+                <input type="text" name="endDate" placeholder="End Date" required class="form-input">
+                <textarea name="description" placeholder="Job Description" required class="form-input"></textarea>
                 <div class="entry-actions">
-                    <button type="button" class="delete-entry" onclick="this.closest('.experience-entry').remove()">
+                    <button type="button" class="btn btn-delete" onclick="this.closest('.experience-entry').remove()">
                         Delete Entry
                     </button>
                 </div>

@@ -1,17 +1,15 @@
 {
-    "name": "unique-resume-builder",
-    "version": "1.0.0",
-    "description": "A unique and visually appealing resume builder",
-    "main": "app.js",
-    "scripts": {
-      "start": "serve",
-      "build": "tsc"
-    },
-    "keywords": ["resume", "builder", "typescript"],
-    "author": "Your Name",
-    "license": "MIT",
-    "devDependencies": {
-      "serve": "^14.0.0",
-      "typescript": "^4.9.0"
-    }
+  "name": "sleek-resume-builder",
+  "version": "1.0.0",
+  "description": "A sleek and modern resume builder",
+  "main": "app.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "html2pdf.js": "^0.10.1"
+  },
+  "devDependencies": {
+    "typescript": "^4.5.5"
   }
+}
