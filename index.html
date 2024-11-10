@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sleek Resume Builder</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dark-theme">
+    <div class="container">
+        <header class="header">
+            <h1 class="title">Sleek Resume Builder</h1>
+            <nav class="nav-buttons">
+                <button id="createResumeBtn" class="btn">Create Resume</button>
+                <button id="editResumeBtn" class="btn">Edit Resume</button>
+                <button id="shareResumeBtn" class="btn">Share Resume</button>
+            </nav>
+        </header>
+
+        <main class="main-content">
+            <section id="resumeForm" class="form-section">
+                <h2 class="section-title">Build Your Resume</h2>
+                <form id="resumeBuilderForm" class="resume-form">
+                    <fieldset class="form-group">
+                        <legend>Personal Information</legend>
+                        <div class="input-group">
+                            <input type="text" id="name" name="name" placeholder="Full Name" required class="form-input">
+                            <input type="email" id="email" name="email" placeholder="Email" required class="form-input">
+                            <input type="tel" id="phone" name="phone" placeholder="Phone Number" class="form-input">
+                            <input type="text" id="location" name="location" placeholder="Location" class="form-input">
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="form-group">
+                        <legend>Education</legend>
+                        <div id="educationEntries" class="entries-container"></div>
+                        <button type="button" id="addEducation" class="btn btn-add">Add Education</button>
+                    </fieldset>
+
+                    <fieldset class="form-group">
+                        <legend>Work Experience</legend>
+                        <div id="experienceEntries" class="entries-container"></div>
+                        <button type="button" id="addExperience" class="btn btn-add">Add Experience</button>
+                    </fieldset>
+
+                    <fieldset class="form-group">
+                        <legend>Skills</legend>
+                        <input type="text" id="skills" name="skills" placeholder="Enter skills (comma-separated)" class="form-input">
+                    </fieldset>
+
+                    <button type="submit" class="btn btn-submit">Generate Resume</button>
+                </form>
+            </section>
+
+            <section id="resumePreview" class="preview-section hidden">
+                <div id="resumeContent" class="resume-preview"></div>
+                <div class="preview-actions">
+                    <button id="editResume" class="btn">Edit</button>
+                    <button id="downloadResume" class="btn">Download PDF</button>
+                    <button id="copyLink" class="btn">Copy Link</button>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2024 Sleek Resume Builder. All rights reserved.</p>
+        </footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
