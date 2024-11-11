@@ -4,10 +4,12 @@
   "description": "A sleek and modern resume builder",
   "main": "app.js",
   "scripts": {
-    "build": "tsc"
+    "build": "node init && tsc"
   },
   "dependencies": {
-    "html2pdf.js": "^0.10.1"
+    "dotenv": "^8.2.0",
+    "html2pdf.js": "^0.10.1",
+    "node-fetch": "^3.3.2"
   },
   "devDependencies": {
     "typescript": "^4.5.5"
