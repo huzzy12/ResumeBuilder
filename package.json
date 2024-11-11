@@ -4,7 +4,7 @@
   "description": "A sleek and modern resume builder",
   "main": "app.js",
   "scripts": {
-    "build": "tsc"
+    "build": "node api.js && tsc"
   },
   "dependencies": {
     "html2pdf.js": "^0.10.1"
