@@ -38,9 +38,8 @@ var ResumeBuilder = /** @class */ (function () {
         this.populateFormWithData();
     };
     ResumeBuilder.prototype.shareResume = function () {
-        var username = this.resumeData.name.toLowerCase().replace(/\s+/g, '-');
-        var uniqueUrl = "".concat(window.location.origin, "/").concat(username, "/resume");
-        alert("Share your resume using this link: ".concat(uniqueUrl));
+        var currentUrl = window.location.href;
+        alert("Share your resume using this link: ".concat(currentUrl));
     };
     ResumeBuilder.prototype.handleFormSubmit = function (e) {
         var _a;
@@ -114,15 +113,20 @@ var ResumeBuilder = /** @class */ (function () {
     ResumeBuilder.prototype.downloadResume = function () {
         var element = document.getElementById('resumeContent');
         if (element) {
-            html2pdf()
-                .from(element)
-                .save("".concat(this.resumeData.name.replace(/\s+/g, '_'), "_resume.pdf"));
+            var filename = "".concat(this.resumeData.name.replace(/\s+/g, '_'), "_resume.pdf");
+            var worker = html2pdf().set({
+                margin: 1,
+                filename: filename,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            });
+            worker.from(element).save();
         }
     };
     ResumeBuilder.prototype.copyResumeLink = function () {
-        var username = this.resumeData.name.toLowerCase().replace(/\s+/g, '-');
-        var uniqueUrl = "".concat(window.location.origin, "/").concat(username, "/resume");
-        navigator.clipboard.writeText(uniqueUrl).then(function () {
+        var currentUrl = window.location.href;
+        navigator.clipboard.writeText(currentUrl).then(function () {
             alert('Resume link copied to clipboard!');
         }).catch(function (err) {
             console.error('Failed to copy link: ', err);
