@@ -73,9 +73,8 @@ class ResumeBuilder {
     }
 
     private shareResume(): void {
-        const username = this.resumeData.name.toLowerCase().replace(/\s+/g, '-');
-        const uniqueUrl = `${window.location.origin}/${username}/resume`;
-        alert(`Share your resume using this link: ${uniqueUrl}`);
+        const currentUrl = window.location.href;
+        alert(`Share your resume using this link: ${currentUrl}`);
     }
 
     private handleFormSubmit(e: Event): void {
@@ -229,16 +228,22 @@ class ResumeBuilder {
     private downloadResume(): void {
         const element = document.getElementById('resumeContent');
         if (element) {
-            html2pdf()
-                .from(element)
-                .save(`${this.resumeData.name.replace(/\s+/g, '_')}_resume.pdf`);
+            const filename = `${this.resumeData.name.replace(/\s+/g, '_')}_resume.pdf`;
+            const worker = html2pdf().set({
+                margin: 1,
+                filename: filename,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            });
+            
+            worker.from(element).save();
         }
     }
 
     private copyResumeLink(): void {
-        const username = this.resumeData.name.toLowerCase().replace(/\s+/g, '-');
-        const uniqueUrl = `${window.location.origin}/${username}/resume`;
-        navigator.clipboard.writeText(uniqueUrl).then(() => {
+        const currentUrl = window.location.href;
+        navigator.clipboard.writeText(currentUrl).then(() => {
             alert('Resume link copied to clipboard!');
         }).catch(err => {
             console.error('Failed to copy link: ', err);
